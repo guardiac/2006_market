@@ -67,7 +67,7 @@ class MarketTest < Minitest::Test
     expected = {
                 @item1 => {quantity: 100, vendors: [@vendor1, @vendor3]},
                 @item2 => {quantity: 7, vendors: [@vendor1]},
-                @item4 => {quantity:60, vendors: [@vendor2]},
+                @item4 => {quantity: 50, vendors: [@vendor2]},
                 @item3 => {quantity: 35, vendors: [@vendor2, @vendor3]},
 
     }
@@ -81,5 +81,16 @@ class MarketTest < Minitest::Test
     @market.add_vendor(@vendor3)
 
     assert_equal [@item1, @item2, @item4, @item3], @market.available_items
+  end
+
+  def test_available_items_quantity
+    @market.add_vendor(@vendor1)
+    @market.add_vendor(@vendor2)
+    @market.add_vendor(@vendor3)
+
+    assert_equal 100, @market.item_stock(@item1)
+    assert_equal 7, @market.item_stock(@item2)
+    assert_equal 35, @market.item_stock(@item3)
+    assert_equal 50, @market.item_stock(@item4)
   end
 end
