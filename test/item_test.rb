@@ -4,7 +4,7 @@ require './lib/item'
 
 class ItemTest < Minitest::Test
   def setup
-    @item = Item.new({name: 'Peach', price: "$0.75"})
+    @item = Item.new({name: 'Tomato', price: '$0.50'})
   end
 
   def test_it_exists
@@ -12,7 +12,7 @@ class ItemTest < Minitest::Test
   end
 
   def test_it_has_readable_attributes
-    assert_equal 'Peach', @item.name
-    assert_equal '$0.75', @item.price
+    assert_equal 'Tomato', @item.name
+    assert_equal 0.5, @item.price
   end
 end
