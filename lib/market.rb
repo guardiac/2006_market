@@ -36,4 +36,8 @@ class Market
       stock
     end
   end
+
+  def sorted_item_list
+    available_items.map { |item| item.name }.sort
+  end
 end
