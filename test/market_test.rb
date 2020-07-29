@@ -101,4 +101,12 @@ class MarketTest < Minitest::Test
 
     assert_equal ["Banana Nice Cream", "Peach", "Peach-Raspberry Nice Cream", "Tomato"], @market.sorted_item_list
   end
+
+  def test_it_can_get_overstocked_items
+    @market.add_vendor(@vendor1)
+    @market.add_vendor(@vendor2)
+    @market.add_vendor(@vendor3)
+    
+    assert_equal [@item1], @market.overstocked_items
+  end
 end

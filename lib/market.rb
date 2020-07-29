@@ -40,4 +40,10 @@ class Market
   def sorted_item_list
     available_items.map { |item| item.name }.sort
   end
+
+  def overstocked_items
+    available_items.find_all do |item|
+      vendors_that_sell(item).length > 1 && item_stock(item) >50
+    end
+  end
 end
