@@ -19,12 +19,12 @@ class Market
     @vendors.find_all { |vendor| vendor.inventory.keys.include?(item) }
   end
 
-  # def total_inventory
-  #   available_items.reduce do |result, item|
-  #     result[item] = {quantity: item}
-  #     result
-  #   end
-  # end
+  def total_inventory
+    available_items.reduce(Hash.new { |h,k| h[k] = {} }) do |result, item|
+      result[item] = {quantity: item_stock(item), vendors: vendors_that_sell(item)}
+      result
+    end
+  end
 
   def available_items
     @vendors.flat_map { |vendor| vendor.inventory.keys }.uniq
