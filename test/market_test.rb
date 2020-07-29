@@ -3,7 +3,7 @@ require 'minitest/pride'
 require './lib/item'
 require './lib/vendor'
 require './lib/market'
-require 'mocha'
+require 'mocha/minitest'
 
 class MarketTest < Minitest::Test
   def setup
