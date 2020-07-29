@@ -3,6 +3,7 @@ require 'minitest/pride'
 require './lib/item'
 require './lib/vendor'
 require './lib/market'
+require 'mocha'
 
 class MarketTest < Minitest::Test
   def setup
@@ -106,7 +107,15 @@ class MarketTest < Minitest::Test
     @market.add_vendor(@vendor1)
     @market.add_vendor(@vendor2)
     @market.add_vendor(@vendor3)
-    
+
     assert_equal [@item1], @market.overstocked_items
+  end
+
+  def test_the_market_has_a_date
+    assert_equal "29/07/2020", @market.date
+
+    @market.stubs(:date).returns("24/02/2020")
+
+    assert_equal "24/02/2020", @market.date
   end
 end
