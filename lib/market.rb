@@ -50,4 +50,21 @@ class Market
       vendors_that_sell(item).length > 1 && item_stock(item) >50
     end
   end
+
+  def sell(item, quantity)
+    if item_stock(item) < quantity
+      false
+    else
+      vendors_that_sell(item).each do |vendor|
+        if quantity > 0
+          vendor.inventory[item] =- quantity
+          if vendor.inventory[item] < 0
+            quantity = vendor.inventory[item]
+            vendor.inventory[item] = 0
+          end
+        end
+      end
+      true
+    end
+  end
 end

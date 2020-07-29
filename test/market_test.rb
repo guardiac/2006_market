@@ -118,4 +118,17 @@ class MarketTest < Minitest::Test
 
     assert_equal "24/02/2020", @market.date
   end
+
+  def test_it_can_sell_items
+    @market.add_vendor(@vendor1)
+    @market.add_vendor(@vendor2)
+    @market.add_vendor(@vendor3)
+
+    item5 = Item.new({name: 'Onion', price: '$0.25'})
+
+    assert_equal false, @market.sell(item5, 1)
+    assert_equal true, @market.sell(@item4, 5)
+
+    assert_equal 45, @vendor2.check_stock(@item4)
+  end
 end
